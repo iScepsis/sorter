@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+function create_output_directory() {
+    if [[ "$OUTPUT_DIR" -eq "$SORTING_DIR" ]]; then
+        return 0
+    else 
+        if [[ ! -d "$OUTPUT_DIR" ]]; then
+             mkdir -p "$OUTPUT_DIR"
+        fi
+
+    fi
+}
+
