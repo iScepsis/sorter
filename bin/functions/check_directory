@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#проверяем имеется ли папка и создаем ее в случае отсутствия
+
+function check_directory(){
+    mkdir documents;
+}
