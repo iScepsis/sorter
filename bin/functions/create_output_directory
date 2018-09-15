@@ -3,11 +3,11 @@
 #Создаем папку в которую будем перекладывать отсортированные файлы.
 #Если директория не была указана, складываем все ту же папку, из который была вызвана комманда
 function create_output_directory() {
-    if [[ "$OUTPUT_DIR" == "$SORTING_DIR" ]]; then
+    if [[ "$v_output_dir" == "$v_sorting_dir" ]]; then
         return 0
     else 
-        if [[ ! -d "$OUTPUT_DIR" ]]; then
-             mkdir -p "$OUTPUT_DIR"
+        if [[ ! -d "$v_output_dir" ]]; then
+             mkdir -p "$v_output_dir"
         fi
 
     fi

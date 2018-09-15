@@ -9,15 +9,15 @@ function get_file_type_index(){
     do
     
        #     printf "Index is %s\n" $i
-        if [[ $CURRENT_FILE_TYPE == ${mime_types[$i]} ]]; then
-            FILE_TYPE_INDEX=$i
+        if [[ $v_current_file_type == ${mime_types[$i]} ]]; then
+            v_file_type_index=$i
             type_is_found=1
             printf "Index is %s\n" $i
         fi
     done
 
     if [[ $type_is_found -eq 0 ]]; then
-        FILE_TYPE_INDEX=666
-        printf "Index is not found for type %s\n" $CURRENT_FILE_TYPE
+        v_file_type_index=666
+        printf "Index is not found for type %s\n" $v_current_file_type
     fi    
 }
