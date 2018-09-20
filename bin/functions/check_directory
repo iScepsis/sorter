@@ -3,6 +3,10 @@
 #проверяем имеется ли папка и создаем ее в случае отсутствия
 
 function check_directory(){
-    #mkdir documents
+    v_dest_path="$v_output_dir/${target_directories[$v_file_type_index]}";
+    echo $v_dest_path;
+    if ! [[ -d "$v_dest_path" ]]; then
+        mkdir "$v_dest_path";
+    fi    
     return 0
 }

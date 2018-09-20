@@ -9,7 +9,6 @@ function create_output_directory() {
         if [[ ! -d "$v_output_dir" ]]; then
              mkdir -p "$v_output_dir"
         fi
-
     fi
 }
 
