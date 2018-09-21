@@ -10,7 +10,8 @@ v_sorting_path=$HOME/Documents/LM       #директория, в которой
 v_output_dir=$v_sorting_path/Sorted         #директория, куда будем складывать отсортированные файлы
 v_file_type_index=""            #Текущий индекс для обрабатываемого файла
 v_dest_path=""
-v_sort_type="mv"
+v_sort_type="move"
+file_handled_count=0
 
 #Читаем опции запуска скрипта
 while getopts u:d:p:f: option
@@ -42,13 +43,17 @@ do
         #Проверяем, существует ли директория куда будем перемещать файл и если нет, создаем ее
         check_directory
 
-        if [[ $v_sort_type == "cp" ]]; then
+        if [[ $v_sort_type == "copy" ]]; then
             cp "$file" "$v_dest_path"
         else
            #TODO: изменить на mv после тестов
             cp "$file" "$v_dest_path"
         fi
+
+        if [ "$?" -eq "0" ]; then ((file_handled_count++))
+
     fi
 done
+    echo "$file_handled_count files has been $v_sort_type"
 
 echo "::::::::::::::SORTING IS FINISH::::::::::::"
