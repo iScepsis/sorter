@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source bin/file_types
+source bin/mime_types_list
+source bin/target_directories_list
 source bin/functions/check_directory
 source bin/functions/get_file_type_index
 source bin/functions/create_output_directory
