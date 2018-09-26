@@ -1,6 +1,7 @@
 #!/bin/bash
+#@see All mime types link: https://www.freeformatter.com/mime-types-list.html
 
-#ВАЖНО! Числовые индексы в массивах должны совпадать!
+#ВАЖНО! Числовые индексы в массивах mime_types и target_directories должны совпадать!
 
 #Массив с типами файлов
 mime_types[1]="application/vnd.hzn-3d-crossword";
