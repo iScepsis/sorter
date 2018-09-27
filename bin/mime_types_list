@@ -696,4 +696,7 @@ mime_types[689]="application/zip";
 mime_types[690]="application/vnd.handheld-entertainment+xml";
 mime_types[691]="application/vnd.zzazz.deck+xml";
 
+mime_types[692]="text/x-php";
+mime_types[693]="text/xml"
+
 mime_types[1000]="other"

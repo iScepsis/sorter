@@ -7,7 +7,7 @@ source bin/functions/get_file_type_index
 source bin/functions/create_output_directory
 
 v_current_file_type=""       #переменная для хранения текущего типа файла
-v_sorting_path=$HOME/Documents/LM       #директория, в которой будем сортировать файлы
+v_sorting_path=$HOME/Documents/tests      #директория, в которой будем сортировать файлы
 v_output_dir=$v_sorting_path/Sorted         #директория, куда будем складывать отсортированные файлы
 v_file_type_index=""            #Текущий индекс для обрабатываемого файла
 v_dest_path=""
@@ -44,17 +44,25 @@ do
         #Проверяем, существует ли директория куда будем перемещать файл и если нет, создаем ее
         check_directory
 
-        if [[ $v_sort_type == "copy" ]]; then
-            cp "$file" "$v_dest_path"
-        else
-           #TODO: изменить на mv после тестов
-            cp "$file" "$v_dest_path"
-        fi
+        case $v_sort_type
+        in
+            copy) cp "$file" "$v_dest_path";;
+            move) mv "$file" "$v_dest_path";;
+        esac
 
-        if [ "$?" -eq "0" ]; then ((file_handled_count++))
+      #  if [[ $v_sort_type == "copy" ]]; then
+      #      cp "$file" "$v_dest_path"
+      #  else
+      #     mv "$file" "$v_dest_path"
+      #  fi
+
+        if [ "$?" -eq "0" ]; then
+            ((file_handled_count++))
+        fi
 
     fi
 done
-    echo "$file_handled_count files has been $v_sort_type"
+
+echo "$file_handled_count files has been $v_sort_type"
 
 echo "::::::::::::::SORTING IS FINISH::::::::::::"
