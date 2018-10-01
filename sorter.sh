@@ -1,4 +1,4 @@
-#!/bin/bash +x
+#!/bin/bash
 
 source bin/mime_types_list
 source bin/target_directories_list
@@ -15,13 +15,13 @@ v_sort_type="move"              #Режим перемещиния фалов (c
 file_handled_count=0            #Общее кол-во успешно перемещенных файлов
 
 #Читаем опции запуска скрипта
-while getopts p:o:c option
+while getopts f:t:c option
 do
     case "${option}"
     in
-        p) v_sorting_path=$OPTARG;;
-        o) v_output_dir=$OPTARG;;
-        c) v_sort_type="copy"
+        f) v_sorting_path=$OPTARG;; #директория откуда берем файлы
+        t) v_output_dir=$OPTARG;;   #директория куда помещаем файлы
+        c) v_sort_type="copy"       #режим: копирование или перемещение
     esac
 done
 
@@ -34,6 +34,9 @@ create_output_directory
 for file in $v_sorting_path/*
 do
     if [[ -f $file ]] ; then
+        v_file_type_index=""
+        v_dest_path=""
+
         v_current_file_type=$(file -b --mime-type "$file")
         #Получаем индекс типа файла из массивов в bin/file_types
         get_file_type_index

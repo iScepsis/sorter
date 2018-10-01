@@ -17,7 +17,7 @@ function get_file_type_index(){
     done
 
     if [[ $type_is_found -eq 0 ]]; then
-        v_file_type_index=666
+        v_file_type_index=1000
        # printf "Index is not found for type %s\n" $v_current_file_type
     fi    
 }
