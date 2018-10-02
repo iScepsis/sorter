@@ -13,15 +13,18 @@ v_file_type_index=""            #Текущий индекс для обраба
 v_dest_path=""                  #Переменная в которую собирается путь до конечной директории, куда будет перемещен файл
 v_sort_type="move"              #Режим перемещиния фалов (copy или move)
 file_handled_count=0            #Общее кол-во успешно перемещенных файлов
+show_info=0
+
 
 #Читаем опции запуска скрипта
-while getopts f:t:c option
+while getopts f:t:c:i option
 do
     case "${option}"
     in
         f) v_sorting_path=$OPTARG;; #директория откуда берем файлы
         t) v_output_dir=$OPTARG;;   #директория куда помещаем файлы
-        c) v_sort_type="copy"       #режим: копирование или перемещение
+        c) v_sort_type=$OPTARG;;    #режим: копирование или перемещение
+        i) show_info=$OPTARG;;      #вывод подробной информации
     esac
 done
 
@@ -34,15 +37,16 @@ create_output_directory
 for file in $v_sorting_path/*
 do
     if [[ -f $file ]] ; then
-        v_file_type_index=""
-        v_dest_path=""
-
         v_current_file_type=$(file -b --mime-type "$file")
         #Получаем индекс типа файла из массивов в bin/file_types
         get_file_type_index
 
         #формируем и создаем директорию в которую будем помещать файлы
         check_directory
+
+        if [ "$show_info" != 0 ]; then
+            echo "File '$file'. Sort type: '$v_sort_type'. To: '$v_dest_path'. Mime-type: '$v_current_file_type'"
+        fi
 
         case $v_sort_type
         in
